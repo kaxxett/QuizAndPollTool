@@ -1,0 +1,146 @@
+body {
+	color: #666;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #fff;
+}
+
+#page-wrapper {
+	background-color: #fff;
+	border-radius: 5px;
+	width: 100%;
+	margin: auto;
+	padding: 25px;
+}
+
+#login-wrapper {
+	background-color: rgba(0, 72, 175, 0.6);
+	padding: 30px;
+	margin: 20px auto;
+	color: #fff;
+	border-radius: 5px;
+	width: 50%;
+}
+
+#login-wrapper .txt {
+	background-color: #fff;
+	border-style: none;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 5px;
+	width: 300px;
+	height: 30px;
+	color: #000;
+}
+
+#logo {
+	padding: 10px;
+	background: #fff;
+	margin: 10px auto;
+	border-radius: 10px;
+}
+
+#credentials table {
+    margin: 20px auto;
+    width: 300px;
+}
+
+#credentials input {
+    height: 30px;
+    width: 100%;
+    padding-left: 5px;
+}
+
+.login {
+	width: 100%;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	height: 30px;
+	font-family: Arial;
+	background: rgba(198, 192, 192, 0.8);
+	font-size: 15px;
+}
+
+.login:hover {
+	background: rgba(198, 192, 192, 1);
+	cursor: pointer;
+}
+
+.login:active {
+	color: #fff;
+}
+
+#tdLogin {
+	text-align: center;
+}
+
+#btnAddQuestion, #btnAddAnswer {
+	border-top: 1px solid #000;
+	background: #4d8ab0;
+	background: -webkit-gradient(linear, left top, left bottom, from(#617d8f), to(#4d8ab0));
+	padding: 5px 10px;
+	border-radius: 15px;
+	border-top-left-radius: 5px;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	color: white;
+	font-size: 18px;
+	font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+	text-decoration: none;
+	vertical-align: middle;
+	margin: 15px;
+}
+
+#btnAddQuestion:hover,  #btnAddAnswer:hover {
+   border-top-color: #091014;
+   background: #091014;
+   color: #d9d9d9;
+}
+   
+#btnAddQuestion:active, #btnAddAnswer:active {
+   border-top-color: #000000;
+   background: #000000;
+}
+
+#add-wrapper {
+	border: 1px solid #000;
+	margin: 10px;
+	padding: 20px;
+	border-radius: 12px;
+}
+
+#addQuestion {
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+#addAnswer {
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+#button-wrapper {
+	float: right;
+	margin-right: 50px;
+}
+
+#addAnswerInput, #answer-wrapper, #question-wrapper{
+	margin: 10px;
+	padding: 15px;
+}
+
+#addAnswerInput {
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+li {
+	text-decoration: none;
+	list-style-type: none;
+}
+
+.clear {clear:both;}

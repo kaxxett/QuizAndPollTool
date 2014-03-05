@@ -1,0 +1,179 @@
+body {
+    font-size: 13px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    color: #666;
+    height: 100%;
+}
+
+.header-wrapper {
+    width: 100%;
+    background-color: #14268f;
+    height: 150px;
+}
+
+.header {
+    width: 1024px;
+    height: 100%;
+    background-color: #14268f;
+    margin: 0 auto;
+}
+
+.footer{
+    width:1024px;
+    background-color: #14268f;
+    color: #fff;
+    margin: 0 auto;
+    text-align:center;
+    height: 100%;
+}
+
+.footer-wrapper {
+    width: 100%;
+    background-color: #14268f;
+    height: 50px;
+}
+
+.copyright {
+    padding: 15px;
+}
+
+.button-wrapper {
+    text-align:center;
+    width: 400px;
+    border-radius:5px;
+    border: 1px solid #eee;
+    height: 100px;
+    margin: 0 auto;
+    padding: 10px 50px 10px 50px;
+    margin-top:20px;
+}
+
+.masterButton {
+    width:100px;
+    height:100px;
+    float:left;
+}
+
+.masterButtonLogo {
+    height:100px;
+    cursor:pointer;
+}
+
+.homeHover{
+    background-image: url('../images/Home.png');
+    height:100px;
+}
+
+.homeHover:hover{
+    background-image: url('../images/HomeHover.png');
+    height:100px;
+}
+
+.quizHover{
+    background-image: url('../images/Quiz.png');
+    height:100px;
+}
+
+.quizHover:hover{
+    background-image: url('../images/QuizHover.png');
+    height:100px;
+}
+
+.reportHover{
+    background-image: url('../images/Report.png');
+    height:100px;
+}
+
+.reportHover:hover{
+    background-image: url('../images/ReportHover.png');
+    height:100px;
+}
+
+.usersHover{
+    background-image: url('../images/Users.png');
+    height:100px;
+}
+
+.usersHover:hover{
+    background-image: url('../images/UsersHover.png');
+    height:100px;
+}
+
+#logo {
+	padding: 10px;
+	background: #fff;
+	margin: 10px auto;
+	border-radius: 10px;
+}
+
+.content {
+    height: inherit;
+    border-left: 1px solid #eee; 
+    border-right: 1px solid #eee; 
+    margin: 20px auto;
+    width: 1024px;
+    padding: 10px;
+}
+
+.clear {
+    clear: both;
+}
+
+#greetingBackground {
+    float:right;
+    background-image: url('../images/backgroundAccountInfo.png');
+    width: 282px;
+    height: 117px;
+    margin-right: 50px;
+    background-repeat: no-repeat;
+}
+
+#greetings {
+    margin: 10px;
+    margin-top: 20px;
+    float: left;
+}
+
+#type {
+    background-image: url('../images/backgroundAccountIcon.png');
+    width: 90px;
+    height: 86px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+}
+
+#greetings table {
+    color: #fff;
+    font-size: 14px;
+}
+
+#greetings a {
+    text-decoration: none;
+    color: #eee;
+}
+
+#greetings a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+#studentIcon {
+    background-image: url('../images/studentIcon.png');
+    background-repeat: no-repeat;
+    width: 72px;
+    height: 72px;
+    margin: 9px auto;
+    display: none;
+}
+
+#lecturerIcon {
+    background-image: url('../images/teacherIcon.png');
+    background-repeat: no-repeat;
+    width: 72px;
+    height: 72px;
+    margin: 9px auto;
+    display: none;
+}

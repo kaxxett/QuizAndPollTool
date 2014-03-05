@@ -1,0 +1,125 @@
+
+
+.mainButton {
+    background: #4d8ab0;
+	background: -webkit-gradient(linear, left top, left bottom, from(#14268f), to(#4d8ab0));
+	padding: 5px 10px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+	color: white;
+	font-size: 18px;
+	font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+	text-decoration: none;
+	vertical-align: middle;
+	margin: 15px;
+}
+
+.mainButton:hover {
+   background: #14268f;
+   color: #d9d9d9;
+   cursor: pointer;
+}
+
+.button {
+    background: rgba(0,0,255, 0.7);
+    color: white;
+	font-size: 12px;
+	font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+	text-decoration: none;
+	vertical-align: middle;
+	margin: 5px;
+    padding: 5px;
+    border: none;
+    width: 100px;
+    border-radius: 2px;
+}
+
+.button:hover {
+   background: #14268f;
+   color: #d9d9d9;
+   cursor: pointer;
+}
+
+#add-wrapper, #question-wrapper {
+	margin: 10px;
+	padding: 20px;
+    background: rgba(0,0,255, 0.1);
+    border-radius: 5px;
+}
+
+#addQuestion, .questions {
+	margin: 10px;
+	padding: 15px;
+    background: #fff;
+    border-radius: 7px;
+}
+
+#addAnswerInput {
+    background: #fff;
+	border-bottom: 1px solid rgba(0,0,255, 0.4);
+}
+
+#addAnswer {
+	margin: 10px;
+	padding: 15px;
+    background: #fff;
+    border-radius: 7px;
+}
+
+#button-wrapper {
+	float: right;
+	margin-right: 50px;
+}
+
+#addAnswerInput, #answer-wrapper, #question-wrapper{
+	margin: 10px;
+	padding: 15px;
+}
+
+li {
+	text-decoration: none;
+	list-style-type: none;
+}
+
+.clear {clear:both;}
+
+.add, .view {
+    display: none;
+    color: #000;
+}
+
+.answers label {
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin: 8px;  
+    font-size: 13px;  
+}
+
+.answers input[type=radio] {  
+    display: none;  
+}
+
+.answers label:before {  
+    content: "";  
+    display: inline-block;  
+    width: 16px;  
+    height: 16px;
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #4d8ab0;  
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    border-radius: 2px; 
+}
+
+.answers input[type=radio]:checked + label:before {  
+    content: "\2713";  
+    color: #f3f3f3;  
+    font-size: 15px;  
+    text-align: center;  
+    line-height: 14px;  
+} 

@@ -1,0 +1,150 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Quiz and Pool tool system </title>
+    <link href="style/style.css" rel="stylesheet" />
+    <link href="style/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="style/users.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="scripts/three/three.min.js"></script>
+    <link href="style/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/jquery1.11.0.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myContent").load("index.html");
+            if (sessionStorage.getItem("login") == null) {
+                $('#lecturer').hide();
+                $('#student').hide();
+                $('#greetingBackground').hide();
+            } else {
+                var username = sessionStorage.getItem("login");
+                $('#greetingBackground').show();
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:4392/DbService.asmx/GetUser',
+                    datatype: 'json',
+                    data: { 'username': username },
+                    async: false,
+                    success: function (data) {
+                        var returnedUser = JSON.parse(data);
+                        $('#lecturer').hide();
+                        $('#student').hide();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:4392/DbService.asmx/GetUserTypeByID',
+                            datatype: 'json',
+                            data: { 'id': returnedUser.userTypeID },
+                            async: false,
+                            success: function (d) {
+                                if (d != null) {
+                                    if (d == "lecturer") {
+                                        $('#lecturer').show();
+                                        $('.button-wrapper').show();
+                                        $("#myContent").load("Quiz.html");
+                                        document.getElementById('getType').innerHTML = "Lecturer";
+                                        $('#lecturerIcon').show();
+                                        $('#studentIcon').hide();
+                                    } else if (d == "student") {
+                                        $('.button-wrapper').hide();
+                                        $('#student').show();
+                                        $("#myContent").load("Home.html");
+                                        $('#studentIcon').show();
+                                        $('#lecturerIcon').hide();
+                                        document.getElementById('getType').innerHTML = "Student";
+                                    }
+                                }
+                            }
+                        });
+                        $('#none').hide();
+                    },
+                    error: function (data) {
+                        alert("Not logged in");
+                    }
+                });
+
+                document.getElementById('getUser').innerHTML = username;
+                document.getElementById('getStatus').innerHTML = '<a href="#" id="logout">Sign out</a>';
+            }
+
+            $('#logout').click(function () {
+                sessionStorage.removeItem("login");
+                alert("Logged out");
+                location.reload();
+                $('#studentIcon').hide();
+                $('#lecturerIcon').hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div id="greetingBackground">
+                <div id="type">
+                    <div id="typeIcon">
+                        <div id="studentIcon"></div>
+                        <div id="lecturerIcon"></div>
+                    </div>
+                </div>
+                <div id="greetings">
+                    <table>
+                        <tr>
+                            <td>User: </td>
+                            <td><label id="getUser"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Type: </td>
+                            <td><label id="getType"></label></td>
+                        </tr>
+                    </table>
+                    <table id="log">
+                        <tr>
+                            <td id="getStatus"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="siteName">
+                <img src="images/SchoolQuizLogo.png" height="140" />
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="button-wrapper">
+            <div id="none">
+                <div class="masterButton" onclick="$('#myContent').load('index.html')">
+                    <div class="masterButtonLogo homeHover">
+                    </div>
+                </div>
+            </div>
+            <div id="lecturer">
+            <div class="masterButton">
+                <div>
+                    <div class="masterButtonLogo quizHover" onclick="$('#myContent').load('Quiz.html')">
+                    </div>
+                </div>
+            </div>
+                <div class="masterButton" onclick="$('#myContent').load('Users.html')">
+                    <div class="masterButtonLogo usersHover">
+                    </div>
+                </div>
+                <div class="masterButton">
+                    <div class="masterButtonLogo reportHover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myContent" class="content">
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <div class="footer">
+            <p class="copyright">
+                Team Gozo &#169; 2014
+            </p>
+        </div>
+    </div>
+</body>
+</html>

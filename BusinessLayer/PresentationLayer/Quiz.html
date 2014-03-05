@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Quiz</title>
+    <link href="style/quiz.css" rel="stylesheet" />
+    <script src="scripts/quiz.js"></script>
+</head>
+<body>
+    <div id="page-wrapper">
+            <input type="hidden" id="hiddenField" />
+            <div id="quizTable">
+            </div>
+            <input type="text" placeholder="Enter Quiz Name" id="quizName" />
+            <input type="button" id="btnAddQuiz" value="Add Quiz" />
+            <label id="lblStausQuiz" />
+            <form id="updateformQuiz" action="#">
+                <div>
+                    <input type="text" placeholder="Quiz name" id="txtUpdateQuiz" required="required" />
+                    <input type="submit" value="Update" id="btnUpdateQuiz" />
+                </div>
+            </form>
+        <input type="hidden" id="hdnSelectedQuiz" />
+        <select id="selectQuiz"></select>
+        <div id="add-wrapper">
+            <input type="submit" id="add" value="Add Question" class="mainButton" />
+            <div class="add">
+                <div id="addQuestion">
+                    <div id="addQuestionInput">
+                        <label>
+                            Question:
+                        </label>
+                        <input type="text" id="questionText" />
+                    </div>
+                </div>
+                <div id="addAnswer">
+                    <div id="addAnswerInput">
+                        <label>
+                            Answer:
+                        </label>
+                        <input type="text" id="answerText" />
+                        <input id="submitAnswer" class="button" value="Add" type="button" />
+                    </div>
+                    <div id="answer-wrapper">
+                        <label> Please Mark the Correct Answer with &#x2713 </label>
+                        <div id="answers">
+                            <!-- All Added Answers are added as Radio Button -->
+                                <ul class="answers">
+                                    <!-- User JQuery to Append to .Answers -->
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+                    <div id="button-wrapper">
+                        <input id="cancelQuestion" class="button" value="Cancel" type="button" />
+                        <input id="submitQuestion" class="button" value="Submit" type="button" />
+                    </div>
+                <!-- Empty Div for CSS, ignore it -->
+                <div class="clear">
+                </div>
+            </div>
+            </div>
+            <div id="question-wrapper">
+                <input id="view" class="mainButton" type="submit" value="View Questions" />
+                <div class="view">
+                    <ul class="questions">
+                        <li id="q1">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Question 1
+                                    </td>
+                                    <td>
+                                        Where do I sleep?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Answer
+                                    </td>
+                                    <td>
+                                        Bed
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Wrong Answer
+                                    </td>
+                                    <td>
+                                        Sofa
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        Chair
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li id="q2">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Question 1
+                                    </td>
+                                    <td>
+                                        Where do I sleep?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Answer
+                                    </td>
+                                    <td>
+                                        Bed
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Wrong Answer
+                                    </td>
+                                    <td>
+                                        Sofa
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        Chair
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

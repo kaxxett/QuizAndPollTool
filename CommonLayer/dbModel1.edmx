@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="quizPollDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="quizPollDBModelStoreContainer">
+          <EntitySet Name="answer" EntityType="quizPollDBModel.Store.answer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="question" EntityType="quizPollDBModel.Store.question" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="quiz" EntityType="quizPollDBModel.Store.quiz" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user" EntityType="quizPollDBModel.Store.user" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="userQuestionAnswer" EntityType="quizPollDBModel.Store.userQuestionAnswer" store:Type="Tables" store:Schema="dbo" store:Name="userQuestionAnswer">
+            <DefiningQuery>SELECT 
+      [userQuestionAnswer].[username] AS [username], 
+      [userQuestionAnswer].[answerID] AS [answerID]
+      FROM [dbo].[userQuestionAnswer] AS [userQuestionAnswer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="userType" EntityType="quizPollDBModel.Store.userType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__answer__question__239E4DCF" Association="quizPollDBModel.Store.FK__answer__question__239E4DCF">
+            <End Role="question" EntitySet="question" />
+            <End Role="answer" EntitySet="answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userQuest__answe__24927208" Association="quizPollDBModel.Store.FK__userQuest__answe__24927208">
+            <End Role="answer" EntitySet="answer" />
+            <End Role="userQuestionAnswer" EntitySet="userQuestionAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userQuestionAnswer_user" Association="quizPollDBModel.Store.FK_userQuestionAnswer_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="userQuestionAnswer" EntitySet="userQuestionAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="quizQuestion" Association="quizPollDBModel.Store.quizQuestion">
+            <End Role="quiz" EntitySet="quiz" />
+            <End Role="question" EntitySet="question" />
+          </AssociationSet>
+          <AssociationSet Name="UserRel" Association="quizPollDBModel.Store.UserRel">
+            <End Role="userType" EntitySet="userType" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="answer">
+          <Key>
+            <PropertyRef Name="answerID" />
+          </Key>
+          <Property Name="answerID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="answer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="questionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Name="questionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="quizID" Type="int" Nullable="false" />
+          <Property Name="correctAnswerID" Type="int" />
+        </EntityType>
+        <EntityType Name="quiz">
+          <Key>
+            <PropertyRef Name="quizID" />
+          </Key>
+          <Property Name="quizID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="quizName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="surname" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="userTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'quizPollDB.dbo.userQuestionAnswer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="userQuestionAnswer">
+          <Key>
+            <PropertyRef Name="username" />
+            <PropertyRef Name="answerID" />
+          </Key>
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="answerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userType">
+          <Key>
+            <PropertyRef Name="userTypeID" />
+          </Key>
+          <Property Name="userTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__answer__question__239E4DCF">
+          <End Role="question" Type="quizPollDBModel.Store.question" Multiplicity="1" />
+          <End Role="answer" Type="quizPollDBModel.Store.answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="answer">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userQuest__answe__24927208">
+          <End Role="answer" Type="quizPollDBModel.Store.answer" Multiplicity="1" />
+          <End Role="userQuestionAnswer" Type="quizPollDBModel.Store.userQuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="answer">
+              <PropertyRef Name="answerID" />
+            </Principal>
+            <Dependent Role="userQuestionAnswer">
+              <PropertyRef Name="answerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userQuestionAnswer_user">
+          <End Role="user" Type="quizPollDBModel.Store.user" Multiplicity="1" />
+          <End Role="userQuestionAnswer" Type="quizPollDBModel.Store.userQuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="userQuestionAnswer">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quizQuestion">
+          <End Role="quiz" Type="quizPollDBModel.Store.quiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="question" Type="quizPollDBModel.Store.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quiz">
+              <PropertyRef Name="quizID" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="quizID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserRel">
+          <End Role="userType" Type="quizPollDBModel.Store.userType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user" Type="quizPollDBModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userType">
+              <PropertyRef Name="userTypeID" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="userTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="quizPollDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="quizPollDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="answers" EntityType="quizPollDBModel.answer" />
+          <EntitySet Name="questions" EntityType="quizPollDBModel.question" />
+          <EntitySet Name="quizs" EntityType="quizPollDBModel.quiz" />
+          <EntitySet Name="users" EntityType="quizPollDBModel.user" />
+          <EntitySet Name="userTypes" EntityType="quizPollDBModel.userType" />
+          <AssociationSet Name="FK__answer__question__239E4DCF" Association="quizPollDBModel.FK__answer__question__239E4DCF">
+            <End Role="question" EntitySet="questions" />
+            <End Role="answer" EntitySet="answers" />
+          </AssociationSet>
+          <AssociationSet Name="quizQuestion" Association="quizPollDBModel.quizQuestion">
+            <End Role="quiz" EntitySet="quizs" />
+            <End Role="question" EntitySet="questions" />
+          </AssociationSet>
+          <AssociationSet Name="UserRel" Association="quizPollDBModel.UserRel">
+            <End Role="userType" EntitySet="userTypes" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="userQuestionAnswer" Association="quizPollDBModel.userQuestionAnswer">
+            <End Role="answer" EntitySet="answers" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="answer">
+          <Key>
+            <PropertyRef Name="answerID" />
+          </Key>
+          <Property Type="Int32" Name="answerID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="answer1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="questionID" Nullable="false" />
+          <NavigationProperty Name="question" Relationship="quizPollDBModel.FK__answer__question__239E4DCF" FromRole="answer" ToRole="question" />
+          <NavigationProperty Name="users" Relationship="quizPollDBModel.userQuestionAnswer" FromRole="answer" ToRole="user" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Type="Int32" Name="questionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="question1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="quizID" Nullable="false" />
+          <Property Type="Int32" Name="correctAnswerID" />
+          <NavigationProperty Name="answers" Relationship="quizPollDBModel.FK__answer__question__239E4DCF" FromRole="question" ToRole="answer" />
+          <NavigationProperty Name="quiz" Relationship="quizPollDBModel.quizQuestion" FromRole="question" ToRole="quiz" />
+        </EntityType>
+        <EntityType Name="quiz">
+          <Key>
+            <PropertyRef Name="quizID" />
+          </Key>
+          <Property Type="Int32" Name="quizID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="quizName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="questions" Relationship="quizPollDBModel.quizQuestion" FromRole="quiz" ToRole="question" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="surname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="userTypeID" Nullable="false" />
+          <NavigationProperty Name="userType" Relationship="quizPollDBModel.UserRel" FromRole="user" ToRole="userType" />
+          <NavigationProperty Name="answers" Relationship="quizPollDBModel.userQuestionAnswer" FromRole="user" ToRole="answer" />
+        </EntityType>
+        <EntityType Name="userType">
+          <Key>
+            <PropertyRef Name="userTypeID" />
+          </Key>
+          <Property Type="Int32" Name="userTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="users" Relationship="quizPollDBModel.UserRel" FromRole="userType" ToRole="user" />
+        </EntityType>
+        <Association Name="FK__answer__question__239E4DCF">
+          <End Type="quizPollDBModel.question" Role="question" Multiplicity="1" />
+          <End Type="quizPollDBModel.answer" Role="answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="answer">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quizQuestion">
+          <End Type="quizPollDBModel.quiz" Role="quiz" Multiplicity="1" />
+          <End Type="quizPollDBModel.question" Role="question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quiz">
+              <PropertyRef Name="quizID" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="quizID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserRel">
+          <End Type="quizPollDBModel.userType" Role="userType" Multiplicity="1" />
+          <End Type="quizPollDBModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userType">
+              <PropertyRef Name="userTypeID" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="userTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userQuestionAnswer">
+          <End Type="quizPollDBModel.answer" Role="answer" Multiplicity="*" />
+          <End Type="quizPollDBModel.user" Role="user" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="quizPollDBModelStoreContainer" CdmEntityContainer="quizPollDBEntities">
+          <EntitySetMapping Name="answers">
+            <EntityTypeMapping TypeName="quizPollDBModel.answer">
+              <MappingFragment StoreEntitySet="answer">
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="answer1" ColumnName="answer" />
+                <ScalarProperty Name="answerID" ColumnName="answerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="questions">
+            <EntityTypeMapping TypeName="quizPollDBModel.question">
+              <MappingFragment StoreEntitySet="question">
+                <ScalarProperty Name="correctAnswerID" ColumnName="correctAnswerID" />
+                <ScalarProperty Name="quizID" ColumnName="quizID" />
+                <ScalarProperty Name="question1" ColumnName="question" />
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quizs">
+            <EntityTypeMapping TypeName="quizPollDBModel.quiz">
+              <MappingFragment StoreEntitySet="quiz">
+                <ScalarProperty Name="quizName" ColumnName="quizName" />
+                <ScalarProperty Name="quizID" ColumnName="quizID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="quizPollDBModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="userTypeID" ColumnName="userTypeID" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userTypes">
+            <EntityTypeMapping TypeName="quizPollDBModel.userType">
+              <MappingFragment StoreEntitySet="userType">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="userTypeID" ColumnName="userTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="userQuestionAnswer" TypeName="quizPollDBModel.userQuestionAnswer" StoreEntitySet="userQuestionAnswer">
+            <EndProperty Name="user">
+              <ScalarProperty Name="username" ColumnName="username" />
+            </EndProperty>
+            <EndProperty Name="answer">
+              <ScalarProperty Name="answerID" ColumnName="answerID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="dbModel1">
+        <EntityTypeShape EntityType="quizPollDBModel.answer" Width="1.5" PointX="5.25" PointY="1.125" Height="1.9802864583333326" />
+        <EntityTypeShape EntityType="quizPollDBModel.question" Width="1.5" PointX="3" PointY="1" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="quizPollDBModel.quiz" Width="1.5" PointX="0.75" PointY="1.375" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="quizPollDBModel.user" Width="1.5" PointX="7.5" PointY="1" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="quizPollDBModel.userType" Width="1.5" PointX="5.25" PointY="5.375" Height="1.5956835937499996" />
+        <AssociationConnector Association="quizPollDBModel.FK__answer__question__239E4DCF" >
+          <ConnectorPoint PointX="4.5" PointY="2.1151432291666663" />
+          <ConnectorPoint PointX="5.25" PointY="2.1151432291666663" />
+        </AssociationConnector>
+        <AssociationConnector Association="quizPollDBModel.quizQuestion" >
+          <ConnectorPoint PointX="2.25" PointY="2.172841796875" />
+          <ConnectorPoint PointX="3" PointY="2.172841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="quizPollDBModel.UserRel" >
+          <ConnectorPoint PointX="6.75" PointY="6.172841796875" />
+          <ConnectorPoint PointX="8.25" PointY="6.172841796875" />
+          <ConnectorPoint PointX="8.25" PointY="3.3648893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="quizPollDBModel.userQuestionAnswer" >
+          <ConnectorPoint PointX="6.75" PointY="2.1151432291666663" />
+          <ConnectorPoint PointX="7.5" PointY="2.1151432291666663" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

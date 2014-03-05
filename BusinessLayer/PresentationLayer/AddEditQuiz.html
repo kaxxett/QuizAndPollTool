@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Quiz</title>
+    <link href="style/style.css" rel="stylesheet" />
+    <link href="style/quiz.css" rel="stylesheet" />
+    <!-- to Remove -->
+    <script src="scripts/jquery1.11.0.js" type="text/javascript"></script>
+    <!-- -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnCreateQuiz").click(function () {
+                $("#createQuiz").fadeIn("slow");
+                $("#editQuiz").hide();
+            });
+
+            $("#btnEditQuiz").click(function () {
+                $("#createQuiz").hide();
+                $("#editQuiz").fadeIn("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="page-wrapper">
+        <input type="submit" id="btnCreateQuiz" value="Create Quiz" />
+        <input type="submit" id="btnEditQuiz" value="Modify Quiz" />
+
+        <div id="quizContent">
+
+            <div id="createQuiz">
+                <input type="text" id="quizName" placeholder="Quiz Name"/>
+            </div>
+
+            <div id="editQuiz">
+                <table id="quizTable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Number of Questions</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
